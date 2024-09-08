@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Pet_project_godot_study"
-run/main_scene="res://menu.tscn"
+run/main_scene="res://scenes/menu/menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Singnals="*res://scenes/global/singnals.gd"
 
 [editor]
 
@@ -55,6 +59,15 @@ run={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemies"
+2d_physics/layer_5="playerHurtBox"
+2d_physics/layer_6="enemyHurtBox"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/layer_6=""

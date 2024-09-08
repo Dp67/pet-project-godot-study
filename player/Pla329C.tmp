@@ -1016,9 +1016,8 @@ shape = SubResource("CapsuleShape2D_svthe")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -13)
 sprite_frames = SubResource("SpriteFrames_qpap8")
-animation = &"Death"
+animation = &"Damage"
 autoplay = "Idle"
-frame = 11
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-1, 0)
