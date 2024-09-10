@@ -1,7 +1,7 @@
 extends Node2D
 
 #
-#var gold = preload("res://collectibles/gold.tscn")
+#var gold = preload("res://scenes/collectibles/gold/gold.tscn")
 #
 #func _on_timer_timeout() -> void:
 	#var goldTemp = gold.instantiate()

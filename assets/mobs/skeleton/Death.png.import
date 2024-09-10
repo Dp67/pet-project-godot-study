@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp7maegkc13sf"
-path="res://.godot/imported/coin.png-16c73fe467189039954c30d079ba11a3.ctex"
+uid="uid://dw5rcnpwptt3g"
+path="res://.godot/imported/Death.png-238328feba78b76a1e29cbbb9bcb87b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://collectibles/coin.png"
-dest_files=["res://.godot/imported/coin.png-16c73fe467189039954c30d079ba11a3.ctex"]
+source_file="res://assets/mobs/skeleton/Death.png"
+dest_files=["res://.godot/imported/Death.png-238328feba78b76a1e29cbbb9bcb87b2.ctex"]
 
 [params]
 

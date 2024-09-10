@@ -28,6 +28,9 @@ var run_speed = 1
 var combo = false
 var attack_cooldown = false
 var player_pos
+var damage_basic = 10
+var damage_multipler = 1
+var damage_current
 
 func _ready() -> void:
 	Singnals.connect("enemy_attack", Callable(self, "_on_damage_received"))
@@ -52,12 +55,13 @@ func _physics_process(delta: float) -> void:
 		DEATH:
 			death_state()
 		
-	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
 	if velocity.y > 0: 
 		animPlayer.play("Fall")	
+		
+	damage_current = damage_basic + damage_multipler
 		
 	move_and_slide()
 	
@@ -66,7 +70,12 @@ func _physics_process(delta: float) -> void:
 
 func move_state() -> void:
 	var direction := Input.get_axis("left", "right")
-	anim.flip_h = direction < 0
+	if direction == -1:
+		anim.flip_h = true
+		$AttackDirection.rotation_degrees = 180
+	elif direction == 1:
+		anim.flip_h = false
+		$AttackDirection.rotation_degrees = 0
 	if direction:
 		velocity.x = direction * SPEED * run_speed
 		if velocity.y == 0:
@@ -105,15 +114,17 @@ func slide_state() -> void:
 	state = MOVE
 	
 func attack_state() -> void: 
+	damage_multipler = 1
 	if Input.is_action_just_pressed("attack") and combo == true:
 		state = ATTACK2
-	velocity.x = 0
+	velocity.x = move_toward(velocity.x, 0, SPEED)
 	animPlayer.play("Attack")
 	await animPlayer.animation_finished
 	attack_freeze()
 	state = MOVE	
 	
 func attack2_state() -> void: 
+	damage_multipler = 1.2
 	if Input.is_action_just_pressed("attack") and combo == true:
 		state = ATTACK3
 	animPlayer.play("Attack2")
@@ -121,6 +132,7 @@ func attack2_state() -> void:
 	state = MOVE
 	
 func attack3_state() -> void: 
+	damage_multipler = 2
 	animPlayer.play("Attack3")
 	await animPlayer.animation_finished
 	state = MOVE		
@@ -149,12 +161,20 @@ func death_state() -> void:
 	get_tree().change_scene_to_file.bind("res://scenes/menu/menu.tscn").call_deferred()
 
 func _on_damage_received(enemy_damage) -> void:
+	if state == BLOCK:
+		enemy_damage /= 2
+	elif state == SLIDE:
+		enemy_damage = 0
+	else:
+		state = DAMAGE	
 	health -= enemy_damage
 	if health <= 0:
 		health = 0
 		state = DEATH
-	else:
-		state = DAMAGE
+		
 	emit_signal("health_chaged", health)
-	
 	print(health)
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	Singnals.emit_signal("player_attack", damage_current)

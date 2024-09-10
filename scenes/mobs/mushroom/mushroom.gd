@@ -8,6 +8,7 @@ enum {
 	CHASE,
 	ATTACK,
 	TAKE_HIT,
+	RECOVER,
 	DEATH
 }
 
@@ -17,21 +18,23 @@ var state: int = 0:
 		match state:
 			IDLE:
 				idle_state()
-			CHASE:
-				pass
 			ATTACK:
 				attack_state()
 			TAKE_HIT:
-				pass
+				take_hit_state()
 			DEATH:
-				pass
+				death_state()
+			RECOVER:
+				recover_state()
 				
 var player_pos	
 var direction	
 var damage = 20		
+var health = 100
 				
 func _ready() -> void:
-	Singnals.connect("player_position_update", Callable (self, "_on_player_position_update"))				
+	Singnals.connect("player_position_update", Callable (self, "_on_player_position_update"))
+	Singnals.connect("player_attack", Callable (self, "_on_damage_received"))
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -41,7 +44,6 @@ func _physics_process(delta: float) -> void:
 	if state == CHASE:
 		chase_state()
 			
-
 	move_and_slide()
 
 @warning_ignore("shadowed_variable")
@@ -53,14 +55,11 @@ func _on_attack_range_body_entered(_body: Node2D) -> void:
 	
 func idle_state() -> void:
 	mushroomAnimPlayer.play("Idle")
-	await get_tree().create_timer(1).timeout
-	$AttackDirection/AttackRange/CollisionShape2D.disabled = false
 	state = CHASE
 	
 func attack_state() -> void:
 	mushroomAnimPlayer.play("Attack")
 	await mushroomAnimPlayer.animation_finished
-	$AttackDirection/AttackRange/CollisionShape2D.disabled = true
 	state = IDLE	
 	
 func chase_state() -> void:
@@ -71,7 +70,29 @@ func chase_state() -> void:
 	else: 	
 		sprite.flip_h = false
 		$AttackDirection.rotation_degrees = 0
+		
+func take_hit_state() -> void:
+	mushroomAnimPlayer.play("Take Hit")
+	await mushroomAnimPlayer.animation_finished
+	state = RECOVER
 
-
+func death_state() -> void: 
+	mushroomAnimPlayer.play("Death")
+	await mushroomAnimPlayer.animation_finished
+	queue_free()
+	
+func recover_state() -> void: 
+	mushroomAnimPlayer.play("Recover")
+	await mushroomAnimPlayer.animation_finished
+	state = IDLE
+	
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	Singnals.emit_signal("enemy_attack", damage)
+
+func _on_damage_received(player_damage: int) -> void: 
+	health -= player_damage
+	if health <= 0:
+		state = DEATH
+	else:
+		state = IDLE
+		state = TAKE_HIT

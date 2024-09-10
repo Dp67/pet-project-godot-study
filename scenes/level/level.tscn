@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://dvoll1h2w2828"]
 
-[ext_resource type="Script" path="res://level.gd" id="1_8f2dq"]
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_8f2dq"]
 [ext_resource type="Texture2D" uid="uid://bdahpp7cqgk5i" path="res://oak_woods_v1.0/background/background_layer_1.png" id="1_gbhg1"]
 [ext_resource type="PackedScene" uid="uid://bi13x2r7pgd1l" path="res://player/Player.tscn" id="2_n8rx4"]
 [ext_resource type="Texture2D" uid="uid://c7k8p2i87jwaq" path="res://oak_woods_v1.0/background/background_layer_2.png" id="2_qpmp7"]
@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://dmrsmkhu178yn" path="res://building/shop.tscn" id="4_knyhq"]
 [ext_resource type="Texture2D" uid="uid://dhcopom6f8525" path="res://oak_woods_v1.0/oak_woods_tileset.png" id="6_sgv35"]
 [ext_resource type="PackedScene" uid="uid://btu6jkw20h742" path="res://scenes/mobs/mushroom/mushroom.tscn" id="8_2lvns"]
-[ext_resource type="Script" path="res://label_2.gd" id="9_rsy12"]
-[ext_resource type="Script" path="res://collectibles.gd" id="10_b3ibb"]
+[ext_resource type="Script" path="res://scenes/level/gold_label.gd" id="9_rsy12"]
+[ext_resource type="Script" path="res://scenes/collectibles/collectibles.gd" id="10_b3ibb"]
 [ext_resource type="Texture2D" uid="uid://dawnav1ofj6dv" path="res://oak_woods_v1.0/decorations/circle.png" id="11_gf0aa"]
-[ext_resource type="Texture2D" uid="uid://b7httcbai0iky" path="res://Sprite-0003.png" id="12_pdntt"]
+[ext_resource type="Texture2D" uid="uid://bcn0jsdlihfkv" path="res://assets/health bar/Sprite-0003.png" id="12_pdntt"]
 [ext_resource type="Texture2D" uid="uid://cy0660ynhh7no" path="res://assets/health bar/Sprite-0001.png" id="13_yeaky"]
 [ext_resource type="Texture2D" uid="uid://c3ioyjowjw1p5" path="res://assets/health bar/Sprite-0002.png" id="14_svefp"]
 
@@ -440,58 +440,130 @@ sources/0 = SubResource("TileSetAtlasSource_us638")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v6rf5"]
 polygon = PackedVector2Array(-5007, 581, -5008, 671, 5009, 673, 5008, 579)
 
-[sub_resource type="Animation" id="Animation_ofm6t"]
+[sub_resource type="Animation" id="Animation_u8an8"]
+resource_name = "sunrise"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.98, 0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer/DayLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 3, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShopLaternRight:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShopLaternLeft:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 8.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yp77v"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DayLabel:modulate")
+tracks/0/path = NodePath("DirectionalLight2D:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
+"values": [0.98]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer/DayLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShopLaternRight:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShopLaternLeft:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
 
-[sub_resource type="Animation" id="Animation_lq4fl"]
-resource_name = "day_text_fade_in"
-length = 1.5
+[sub_resource type="Animation" id="Animation_yxnjq"]
+resource_name = "sunset"
+length = 20.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DayLabel:modulate")
+tracks/0/path = NodePath("DirectionalLight2D:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 20),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.737255)]
+"values": [0.1, 0.98]
 }
 
-[sub_resource type="Animation" id="Animation_1e6et"]
-resource_name = "day_text_fade_out"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DayLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.737255), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_djnt6"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gydk6"]
 _data = {
-"RESET": SubResource("Animation_ofm6t"),
-"day_text_fade_in": SubResource("Animation_lq4fl"),
-"day_text_fade_out": SubResource("Animation_1e6et")
+"RESET": SubResource("Animation_yp77v"),
+"sunrise": SubResource("Animation_u8an8"),
+"sunset": SubResource("Animation_yxnjq")
 }
 
 [node name="Level" type="Node2D"]
@@ -544,6 +616,7 @@ layer_0/tile_data = PackedInt32Array(2424831, 65536, 0, 2359296, 131072, 0, 2359
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="Mushroom" parent="Mobs" instance=ExtResource("8_2lvns")]
+modulate = Color(1, 1, 1, 1)
 position = Vector2(334, 557)
 
 [node name="Player" type="Node2D" parent="."]
@@ -561,7 +634,7 @@ autostart = true
 [node name="Light" type="Node2D" parent="."]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Light"]
-energy = 0.9
+energy = 0.98
 blend_mode = 1
 range_layer_min = -1
 
@@ -569,7 +642,7 @@ range_layer_min = -1
 wait_time = 30.0
 autostart = true
 
-[node name="PointLight2D" type="PointLight2D" parent="Light"]
+[node name="ShopLaternRight" type="PointLight2D" parent="Light"]
 position = Vector2(248, 547)
 scale = Vector2(0.15, 0.154484)
 color = Color(1, 0.7, 0.7, 1)
@@ -577,7 +650,7 @@ energy = 2.0
 shadow_enabled = true
 texture = ExtResource("11_gf0aa")
 
-[node name="PointLight2D2" type="PointLight2D" parent="Light"]
+[node name="ShopLaternLeft" type="PointLight2D" parent="Light"]
 position = Vector2(151, 547)
 scale = Vector2(0.15, 0.154484)
 color = Color(1, 0.74, 0.74, 1)
@@ -587,6 +660,11 @@ texture = ExtResource("11_gf0aa")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Light"]
 occluder = SubResource("OccluderPolygon2D_v6rf5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Light"]
+libraries = {
+"": SubResource("AnimationLibrary_gydk6")
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -610,11 +688,6 @@ theme_override_font_sizes/font_size = 80
 text = "DAY:"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
-libraries = {
-"": SubResource("AnimationLibrary_djnt6")
-}
 
 [node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
 offset_left = 13.0

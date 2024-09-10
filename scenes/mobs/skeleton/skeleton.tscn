@@ -1,10 +1,10 @@
 [gd_scene load_steps=25 format=3 uid="uid://c12vtgtrbxh6a"]
 
-[ext_resource type="Script" path="res://skeleton/skeleton.gd" id="1_6cnkm"]
-[ext_resource type="Texture2D" uid="uid://bgn0l8rtlmap8" path="res://skeleton/Take Hit.png" id="1_fwsds"]
-[ext_resource type="Texture2D" uid="uid://bljrp1t8ynr7d" path="res://skeleton/Idle.png" id="1_q7el6"]
-[ext_resource type="Texture2D" uid="uid://dw5rcnpwptt3g" path="res://skeleton/Death.png" id="2_2r283"]
-[ext_resource type="Texture2D" uid="uid://3h6rw0dsq3ye" path="res://skeleton/Walk.png" id="4_bp4vi"]
+[ext_resource type="Script" path="res://scenes/mobs/skeleton/skeleton.gd" id="1_6cnkm"]
+[ext_resource type="Texture2D" uid="uid://bgn0l8rtlmap8" path="res://assets/mobs/skeleton/Take Hit.png" id="1_fwsds"]
+[ext_resource type="Texture2D" uid="uid://bljrp1t8ynr7d" path="res://assets/mobs/skeleton/Idle.png" id="1_q7el6"]
+[ext_resource type="Texture2D" uid="uid://dw5rcnpwptt3g" path="res://assets/mobs/skeleton/Death.png" id="2_2r283"]
+[ext_resource type="Texture2D" uid="uid://3h6rw0dsq3ye" path="res://assets/mobs/skeleton/Walk.png" id="4_bp4vi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtbkl"]
 radius = 7.0
