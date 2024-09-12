@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dvoll1h2w2828"]
+[gd_scene load_steps=21 format=3 uid="uid://dvoll1h2w2828"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_8f2dq"]
 [ext_resource type="Texture2D" uid="uid://bdahpp7cqgk5i" path="res://oak_woods_v1.0/background/background_layer_1.png" id="1_gbhg1"]
@@ -11,9 +11,7 @@
 [ext_resource type="Script" path="res://scenes/level/gold_label.gd" id="9_rsy12"]
 [ext_resource type="Script" path="res://scenes/collectibles/collectibles.gd" id="10_b3ibb"]
 [ext_resource type="Texture2D" uid="uid://dawnav1ofj6dv" path="res://oak_woods_v1.0/decorations/circle.png" id="11_gf0aa"]
-[ext_resource type="Texture2D" uid="uid://bcn0jsdlihfkv" path="res://assets/health bar/player_hb/Sprite-0003.png" id="12_pdntt"]
-[ext_resource type="Texture2D" uid="uid://cy0660ynhh7no" path="res://assets/health bar/player_hb/Sprite-0001.png" id="13_yeaky"]
-[ext_resource type="Texture2D" uid="uid://c3ioyjowjw1p5" path="res://assets/health bar/player_hb/Sprite-0002.png" id="14_svefp"]
+[ext_resource type="PackedScene" uid="uid://dp173qcrrw1qe" path="res://scenes/player/stats.tscn" id="12_acpqb"]
 
 [sub_resource type="GDScript" id="GDScript_jd5kv"]
 script/source = "extends ParallaxLayer
@@ -688,18 +686,6 @@ text = "DAY:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 13.0
-offset_top = 6.0
-offset_right = 246.0
-offset_bottom = 67.0
-step = 0.0
-value = 72.0
-nine_patch_stretch = true
-texture_under = ExtResource("12_pdntt")
-texture_over = ExtResource("13_yeaky")
-texture_progress = ExtResource("14_svefp")
-tint_progress = Color(0.670588, 0.00392157, 0.129412, 1)
+[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("12_acpqb")]
 
-[connection signal="health_chaged" from="Player/Player" to="." method="_on_player_health_chaged"]
 [connection signal="timeout" from="Light/DayNight" to="." method="_on_day_night_timeout"]
