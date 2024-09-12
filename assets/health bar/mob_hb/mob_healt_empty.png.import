@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy0660ynhh7no"
-path="res://.godot/imported/Sprite-0001.png-d29a23937a63c1deef857bef81dbf61f.ctex"
+uid="uid://cr2peamt7ga50"
+path="res://.godot/imported/mob_healt_empty.png-24069f1c000fb92f3e39af2359cab300.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/health bar/Sprite-0001.png"
-dest_files=["res://.godot/imported/Sprite-0001.png-d29a23937a63c1deef857bef81dbf61f.ctex"]
+source_file="res://assets/health bar/mob_hb/mob_healt_empty.png"
+dest_files=["res://.godot/imported/mob_healt_empty.png-24069f1c000fb92f3e39af2359cab300.ctex"]
 
 [params]
 

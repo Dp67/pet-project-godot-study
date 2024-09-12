@@ -11,9 +11,9 @@
 [ext_resource type="Script" path="res://scenes/level/gold_label.gd" id="9_rsy12"]
 [ext_resource type="Script" path="res://scenes/collectibles/collectibles.gd" id="10_b3ibb"]
 [ext_resource type="Texture2D" uid="uid://dawnav1ofj6dv" path="res://oak_woods_v1.0/decorations/circle.png" id="11_gf0aa"]
-[ext_resource type="Texture2D" uid="uid://bcn0jsdlihfkv" path="res://assets/health bar/Sprite-0003.png" id="12_pdntt"]
-[ext_resource type="Texture2D" uid="uid://cy0660ynhh7no" path="res://assets/health bar/Sprite-0001.png" id="13_yeaky"]
-[ext_resource type="Texture2D" uid="uid://c3ioyjowjw1p5" path="res://assets/health bar/Sprite-0002.png" id="14_svefp"]
+[ext_resource type="Texture2D" uid="uid://bcn0jsdlihfkv" path="res://assets/health bar/player_hb/Sprite-0003.png" id="12_pdntt"]
+[ext_resource type="Texture2D" uid="uid://cy0660ynhh7no" path="res://assets/health bar/player_hb/Sprite-0001.png" id="13_yeaky"]
+[ext_resource type="Texture2D" uid="uid://c3ioyjowjw1p5" path="res://assets/health bar/player_hb/Sprite-0002.png" id="14_svefp"]
 
 [sub_resource type="GDScript" id="GDScript_jd5kv"]
 script/source = "extends ParallaxLayer
@@ -440,6 +440,57 @@ sources/0 = SubResource("TileSetAtlasSource_us638")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v6rf5"]
 polygon = PackedVector2Array(-5007, 581, -5008, 671, 5009, 673, 5008, 579)
 
+[sub_resource type="Animation" id="Animation_yp77v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.98]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer/DayLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShopLaternRight:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShopLaternLeft:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
 [sub_resource type="Animation" id="Animation_u8an8"]
 resource_name = "sunrise"
 length = 20.0
@@ -490,57 +541,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [2.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_yp77v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DirectionalLight2D:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.98]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CanvasLayer/DayLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ShopLaternRight:energy")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ShopLaternLeft:energy")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
 }
 
 [sub_resource type="Animation" id="Animation_yxnjq"]
@@ -616,7 +616,6 @@ layer_0/tile_data = PackedInt32Array(2424831, 65536, 0, 2359296, 131072, 0, 2359
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="Mushroom" parent="Mobs" instance=ExtResource("8_2lvns")]
-modulate = Color(1, 1, 1, 1)
 position = Vector2(334, 557)
 
 [node name="Player" type="Node2D" parent="."]

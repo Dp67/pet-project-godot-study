@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	if velocity.y > 0: 
 		animPlayer.play("Fall")	
 		
-	damage_current = damage_basic + damage_multipler
+	damage_current = damage_basic * damage_multipler
 		
 	move_and_slide()
 	

@@ -30,11 +30,9 @@ var state: int = 0:
 var player_pos	
 var direction	
 var damage = 20		
-var health = 100
 				
 func _ready() -> void:
 	Singnals.connect("player_position_update", Callable (self, "_on_player_position_update"))
-	Singnals.connect("player_attack", Callable (self, "_on_damage_received"))
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -60,7 +58,7 @@ func idle_state() -> void:
 func attack_state() -> void:
 	mushroomAnimPlayer.play("Attack")
 	await mushroomAnimPlayer.animation_finished
-	state = IDLE	
+	state = RECOVER	
 	
 func chase_state() -> void:
 	direction = (player_pos - self.position).normalized()
@@ -89,10 +87,10 @@ func recover_state() -> void:
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	Singnals.emit_signal("enemy_attack", damage)
 
-func _on_damage_received(player_damage: int) -> void: 
-	health -= player_damage
-	if health <= 0:
-		state = DEATH
-	else:
-		state = IDLE
-		state = TAKE_HIT
+
+func _on_mob_health_damage_received() -> void:
+	state = IDLE
+	state = TAKE_HIT
+
+func _on_mob_health_no_health() -> void:
+	state = DEATH
