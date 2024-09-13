@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://bi13x2r7pgd1l"]
+[gd_scene load_steps=110 format=3 uid="uid://bi13x2r7pgd1l"]
 
 [ext_resource type="Texture2D" uid="uid://b4hstgbmkm8uu" path="res://oak_woods_v1.0/character/char_blue.png" id="1_khw7g"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_n7yn6"]
@@ -1113,6 +1113,96 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_50nxe"]
 radius = 7.0
 
+[sub_resource type="Animation" id="Animation_avkne"]
+resource_name = "damage_received"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4, -25), Vector2(-4, -37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageText:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.670588), Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bc4vn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("DamageText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, -25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("DamageText:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_653yy"]
+resource_name = "health_received"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4, -25), Vector2(-4, -37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageText:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.2, 1, 0.306667, 0.670588), Color(0.2, 1, 0.305882, 1), Color(0.2, 1, 0.305882, 1), Color(0.2, 1, 0.305882, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tsqke"]
+_data = {
+"RESET": SubResource("Animation_bc4vn"),
+"damage_received": SubResource("Animation_avkne"),
+"health_received": SubResource("Animation_653yy")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_n7yn6")
@@ -1172,6 +1262,23 @@ position = Vector2(19, 0)
 shape = SubResource("CircleShape2D_50nxe")
 
 [node name="Stats" parent="." instance=ExtResource("7_nsmpd")]
+
+[node name="DamageText" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -4.0
+offset_top = -25.0
+offset_right = 36.0
+offset_bottom = 17.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/font_size = 30
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPDamageAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tsqke")
+}
 
 [connection signal="area_entered" from="AttackDirection/DamageBox/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="no_stamina" from="Stats" to="." method="_on_stats_no_stamina"]

@@ -33,3 +33,9 @@ nine_patch_stretch = true
 texture_under = ExtResource("5_m7ifk")
 texture_progress = ExtResource("6_6gro6")
 tint_progress = Color(0.687956, 0.645851, 0.446657, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
